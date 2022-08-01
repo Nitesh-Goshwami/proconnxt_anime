@@ -16,6 +16,7 @@ const Nav = styled.nav`
     grid-template-columns: 1fr 1fr 1fr;
     width: 85%;
     margin: auto;
+    position:"fixed";
     font-family: "Quattrocento", serif;
     @media ${device.mobileS} {
     grid-template-columns: 1fr 1fr;
@@ -94,7 +95,7 @@ const Navbar = () => {
         <Nav>
             <Box width={{ xs: "30%", sm: "25%", md: "25%", lg: "25%", xl: "35%" }}>
                 <Logo
-                    src="https://github.com/Nitesh-Goshwami/proconnxt_anime/blob/master/public/anime%20logo.png?raw=true"
+                    src="https://www.proconnxt.com/img/logo1.jpg"
                     alt="logo"
                     sx={{ cursor: "pointer", }}
                     onClick={() => {
@@ -105,13 +106,13 @@ const Navbar = () => {
             </Box>
             <LocationCont>
                 <StyledLink to="/">Home</StyledLink>
-                <StyledLink to="/About">About</StyledLink>
                 <StyledLink to="/Movies">Movies</StyledLink>
+                <StyledLink to="/About">About</StyledLink>
                 <StyledLink to="/Contact">Contact</StyledLink>
             </LocationCont>
             <SerachBoxandCartCont>
                 <Box width={{ xs: "20ch", sm: "25ch", lg: "40ch" }}>
-                     {/* <AutoSuggestion
+                    {/* <AutoSuggestion
                         styles={searchbarstae ? "block" : "none"}
                         event={Mangev}
                     /> */}
