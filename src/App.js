@@ -10,8 +10,6 @@ function App() {
     <div className="App">
       <Navbar />
       <Routers />
-      {isAuthenticated ? <img src={user.picture} alt={user.name} /> : ""}
-      Eshopers App
     </div>
   );
 }

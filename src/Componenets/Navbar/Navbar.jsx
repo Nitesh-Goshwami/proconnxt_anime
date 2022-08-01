@@ -94,7 +94,7 @@ const Navbar = () => {
         <Nav>
             <Box width={{ xs: "30%", sm: "25%", md: "25%", lg: "25%", xl: "35%" }}>
                 <Logo
-                    src="https://github.com/Nitesh-Goshwami/Eshoppers/blob/master/public/Images/anime%20logo.png?raw=true"
+                    src="https://github.com/Nitesh-Goshwami/proconnxt_anime/blob/master/public/anime%20logo.png?raw=true"
                     alt="logo"
                     sx={{ cursor: "pointer", }}
                     onClick={() => {
