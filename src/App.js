@@ -1,23 +1,17 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Navbar } from './Componenets/Navbar/Navbar';
+import { Routers } from './Componenets/routers/Routers';
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
+  const { isAuthenticated, user } = useAuth0();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Routers />
+      {isAuthenticated ? <img src={user.picture} alt={user.name} /> : ""}
+      Eshopers App
     </div>
   );
 }
