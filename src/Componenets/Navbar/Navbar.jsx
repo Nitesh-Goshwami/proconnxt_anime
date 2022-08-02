@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { device } from "../../device";
 import { Link, useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import { Tooltip } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -84,7 +83,6 @@ const Logo = styled.img`
 `;
 const Navbar = () => {
     const navigate = useNavigate();
-    // const { isAuthenticated, loginWithRedirect } = useAuth0();
     const [searchbarstae, setsearchbarState] = useState(false);
 
     function Mangev() {

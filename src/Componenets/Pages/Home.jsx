@@ -9,7 +9,7 @@ const Home = () => {
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         getData()
-    }, [])
+    }, [animeData])
     const dataInstance = axios.create({
         baseURL: "https://api.jikan.moe/v4/anime",
         // baseURL: "",

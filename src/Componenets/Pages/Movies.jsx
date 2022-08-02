@@ -73,7 +73,6 @@ const Movies = () => {
     };
 
     const handleChange = (event) => {
-        console.log("event", event.target.value);
         setType(event.target.value)
         setFilterOn(true);
     };

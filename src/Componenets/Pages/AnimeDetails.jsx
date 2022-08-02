@@ -10,7 +10,7 @@ const AnimeDetail = () => {
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [isLoading]);
 
 
     const dataInstance = axios.create({
@@ -23,7 +23,6 @@ const AnimeDetail = () => {
         const res = await dataInstance.get(``);
         let data = res.data.data;
         const temp = data.filter((el) => el.mal_id == params.id);
-        console.log("temp", temp)
         setItems(temp);
         setIsLoading(true);
     };

@@ -11,7 +11,7 @@ const Popular = ({ data }) => {
 
     useEffect(() => {
         filterAction()
-    }, [action])
+    }, [isLoading])
 
     const filterAction = () => {
         const temp = data.filter((el) =>
@@ -24,7 +24,6 @@ const Popular = ({ data }) => {
 
             });
         setAction(temp);
-        console.log(temp)
         setIsLoading(true);
     }
 
