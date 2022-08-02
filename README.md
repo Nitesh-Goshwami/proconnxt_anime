@@ -1,4 +1,4 @@
-# Todo App
+# Anime App
 
 Please visit the app [Anime App](https://proconnxt-anime.vercel.app/).
 
