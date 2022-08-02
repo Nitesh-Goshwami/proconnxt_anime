@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import MovieCard from './movieCard';
 import styled from "styled-components";
 import { device } from '../../device';
+
+
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -22,35 +24,51 @@ const Container = styled.div`
   }
 `;
 
+
+let limit = 6;
+
 const Movies = () => {
     const [items, setItems] = useState([]);
-    const [pageCount, setpageCount] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
-        getData()
-    }, [])
+        getData();
+    }, [limit]);
+
+
     const dataInstance = axios.create({
-        baseURL: "https://api.jikan.moe/v4/anime?page=2&limit=15",
+        baseURL: `https://api.jikan.moe/v4/anime?page=1&limit=${limit}`,
         // baseURL: "",
-    })
+    });
+
 
     const getData = async () => {
         const res = await dataInstance.get(``);
         let data = res.data.data;
         setItems(data);
         setIsLoading(true);
-    }
+    };
+
+
+    const fetchAnime = async (currentPage) => {
+        const res = await fetch(
+            `https://api.jikan.moe/v4/anime?page=${currentPage}&limit=${limit}`
+        );
+        const data = await res.json();
+        console.log("data", data.data)
+        return data.data;
+    };
 
     const handlePageClick = async (data) => {
         console.log(data.selected);
 
         let currentPage = data.selected + 1;
 
-        // const commentsFormServer = await fetchComments(currentPage);
+        const dataFromServer = await fetchAnime(currentPage);
 
-        // setItems(commentsFormServer);
+        setItems(dataFromServer);
         // scroll to the top
-        //window.scrollTo(0, 0)
+        window.scrollTo(0, 0)
     };
     return <>
         <Container>
@@ -70,11 +88,14 @@ const Movies = () => {
                 })
             }
         </Container>
+
+        <br></br><br></br>
+
         <ReactPaginate
             previousLabel={"previous"}
             nextLabel={"next"}
             breakLabel={"..."}
-            pageCount={pageCount}
+            pageCount={4}
             marginPagesDisplayed={2}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}
@@ -89,7 +110,7 @@ const Movies = () => {
             breakLinkClassName={"page-link"}
             activeClassName={"active"}
         />
-        Im movies
+        <br></br>
     </>
 }
 

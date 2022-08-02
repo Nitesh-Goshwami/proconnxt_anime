@@ -50,7 +50,7 @@ export default function MovieCard(prop) {
     // }
     return (
         <Card
-            sx={{ maxWidth: 345, mt: "2%", ml: "2%", cursor: "pointer" }}
+            sx={{ maxWidth: 345, mt: "2%", ml: "2%", mr :"2%", cursor: "pointer" }}
             onClick={(e) => {
                 if (e.target.nodeName !== "BUTTON") {
                     navigate("/Product/" + whole.mai_id);
@@ -64,7 +64,7 @@ export default function MovieCard(prop) {
                 image={animeImg}
                 alt="green iguana"
             />
-            <CardContent>
+            <CardContent style = {{textAlign:"left"}}>
                 <Typography gutterBottom variant="h5" component="div">
                     Title: {animeName.trim().split(" ").splice(0, 1)}
                 </Typography>
