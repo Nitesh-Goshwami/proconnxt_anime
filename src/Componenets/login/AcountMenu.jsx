@@ -11,8 +11,6 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-//import { Login, User } from "../features/user/userSlice";
 
 export default function AccountMenu() {
     const { loginWithRedirect, isAuthenticated, isLoading, logout, user } = useAuth0();

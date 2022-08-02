@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
 import { useState, useEffect } from "react"
 import "slick-carousel/slick/slick.css";
@@ -11,7 +11,7 @@ const Action = ({ data }) => {
 
     useEffect(() => {
         filterAction()
-    }, [])
+    }, [action])
 
     const filterAction = () => {
         const temp = data.filter((el) =>

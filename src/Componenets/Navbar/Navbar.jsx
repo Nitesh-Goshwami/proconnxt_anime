@@ -4,11 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { Box } from "@mui/system";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
-import { Badge, Tooltip } from "@mui/material";
+import { Tooltip } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useSelector } from "react-redux";
 import AccountMenu from "../login/AcountMenu";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AutoSuggestion from "./AutoSuggestions";
+
 
 const Nav = styled.nav`
     display: grid;
@@ -84,13 +84,12 @@ const Logo = styled.img`
 `;
 const Navbar = () => {
     const navigate = useNavigate();
-    const { isAuthenticated, loginWithRedirect } = useAuth0();
+    // const { isAuthenticated, loginWithRedirect } = useAuth0();
     const [searchbarstae, setsearchbarState] = useState(false);
-    // const cartqnty = useSelector((state) => state.cart.quantity);
 
-    // function Mangev() {
-    //     return setsearchbarState(!searchbarstae);
-    //   }
+    function Mangev() {
+        return setsearchbarState(!searchbarstae);
+    }
     return <>
         <Nav>
             <Box width={{ xs: "30%", sm: "25%", md: "25%", lg: "25%", xl: "35%" }}>
@@ -107,15 +106,16 @@ const Navbar = () => {
             <LocationCont>
                 <StyledLink to="/">Home</StyledLink>
                 <StyledLink to="/Movies">Movies</StyledLink>
-                <StyledLink to="/About">About</StyledLink>
+                <StyledLink to="/WatchList">Watch List</StyledLink>
                 <StyledLink to="/Contact">Contact</StyledLink>
             </LocationCont>
             <SerachBoxandCartCont>
                 <Box width={{ xs: "20ch", sm: "25ch", lg: "40ch" }}>
-                    {/* <AutoSuggestion
+                    <AutoSuggestion
                         styles={searchbarstae ? "block" : "none"}
                         event={Mangev}
-                    /> */}
+                    />
+                    {/* <AutoSuggestion/> */}
                 </Box>
 
                 {!searchbarstae ? (
@@ -134,23 +134,6 @@ const Navbar = () => {
                 ) : (
                     ""
                 )}
-
-                {/* <Tooltip title="cart">
-                    <Badge badgeContent={cartqnty} sx={{ mr: 1 }} color="primary">
-                        <ShoppingCartIcon
-                            onClick={(e) => {
-                                if (!isAuthenticated) loginWithRedirect();
-                                navigate("/cart");
-                            }}
-                            sx={{
-                                mr: 1,
-                                mb: 1.9,
-                                color: "rgb(189,189,189)",
-                                cursor: "pointer",
-                            }}
-                        />
-                    </Badge>
-                </Tooltip> */}
 
                 <AccountMenu />
             </SerachBoxandCartCont>
