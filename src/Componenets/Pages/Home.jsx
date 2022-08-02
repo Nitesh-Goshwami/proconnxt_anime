@@ -2,7 +2,7 @@ import ImageSlider from "./ImageSlider";
 import axios from "axios"
 import { useEffect, useState } from "react";
 import { Popular } from "../MicroComponents/Popular";
-import Responsive, { Action } from "../MicroComponents/Action";
+import { Action } from "../MicroComponents/Action";
 import { MostWatched } from "../MicroComponents/MostWatched";
 const Home = () => {
     const [animeData, setAnimeData] = useState();
@@ -26,6 +26,11 @@ const Home = () => {
         height: "480px",
         margin: "0 auto",
     };
+    const sliderStyles = {
+        width: "90%",
+        height: "380px",
+        margin: "0 auto",
+    };
     return (
         <div>
             <div style={containerStyles}>
@@ -33,22 +38,22 @@ const Home = () => {
                     isLoading === true ? <ImageSlider slides={animeData} /> : "Loading............"
                 }
             </div>
-            <br/>
+            <br /><br />
             <h2>Popular</h2>
-            <div >
+            <div style={sliderStyles}>
                 {
                     isLoading === true ? <Popular data={animeData} /> : "Loading............"
                 }
             </div>
             <h2>Action</h2>
-            <div>
+            <div style={sliderStyles}>
                 {
                     isLoading === true ? <Action data={animeData} /> : "Loading............"
                 }
-                {/* <Responsive /> */}
+
             </div>
-            <h2>MostWatched</h2>
-            <div>
+            <h2>Most Watched</h2>
+            <div style={sliderStyles}>
                 {
                     isLoading === true ? <MostWatched data={animeData} /> : "Loading............"
                 }

@@ -16,7 +16,7 @@ const Nav = styled.nav`
     grid-template-columns: 1fr 1fr 1fr;
     width: 85%;
     margin: auto;
-    position:"fixed";
+    position:"sticky";
     font-family: "Quattrocento", serif;
     @media ${device.mobileS} {
     grid-template-columns: 1fr 1fr;
