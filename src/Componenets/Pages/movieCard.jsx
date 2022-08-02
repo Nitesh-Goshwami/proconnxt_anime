@@ -30,6 +30,7 @@ export default function MovieCard(prop) {
         whole,
         episodes,
         rating,
+        genres
     } = prop,
         // dispatch = useDispatch(),
         // wishlist = useSelector((state) => state.wishlist),
@@ -50,7 +51,7 @@ export default function MovieCard(prop) {
     // }
     return (
         <Card
-            sx={{ maxWidth: 345, mt: "2%", ml: "2%", mr :"2%", cursor: "pointer" }}
+            sx={{ maxWidth: 345, mt: "2%", ml: "2%", mr: "2%", cursor: "pointer" }}
             onClick={(e) => {
                 if (e.target.nodeName !== "BUTTON") {
                     navigate("/Product/" + whole.mai_id);
@@ -64,12 +65,19 @@ export default function MovieCard(prop) {
                 image={animeImg}
                 alt="green iguana"
             />
-            <CardContent style = {{textAlign:"left"}}>
-                <Typography gutterBottom variant="h5" component="div">
+            <CardContent style={{ textAlign: "left",display:"grid" }}>
+                <Typography gutterBottom variant="h6" component="div">
                     Title: {animeName.trim().split(" ").splice(0, 1)}
                 </Typography>
+                <br />
                 <Typography variant="small" component="small">
                     Episodes: {episodes}
+                </Typography>
+                <Typography variant="small" component="small">
+                    Genres: {genres}
+                </Typography>
+                <Typography variant="small" component="small">
+                    Rating: {rating}
                 </Typography>
 
                 <Typography variant="body2" color="text.secondary">
@@ -81,7 +89,7 @@ export default function MovieCard(prop) {
                     color="text.primary"
                     sx={{ fontSize: "20px" }}
                 >
-                    
+
                 </Typography>
                 <Rating readOnly name="half-rating" defaultValue={rating}></Rating>
             </CardContent>
@@ -90,23 +98,23 @@ export default function MovieCard(prop) {
                     variant="contained"
                     size="small"
                     color="success"
-                    // onClick={(e) => {
-                    //     if (!isAuthenticated) return loginWithRedirect();
-                    //     dispatch(addToCart(whole));
-                    //     dispatch(postitem({ item: whole, user: email }));
-                    // }}
+                // onClick={(e) => {
+                //     if (!isAuthenticated) return loginWithRedirect();
+                //     dispatch(addToCart(whole));
+                //     dispatch(postitem({ item: whole, user: email }));
+                // }}
                 >
                     cart
                 </Button>
                 <Button
                     variant="contained"
                     size="small"
-                    // onClick={(e) => {
-                    //     if (!isAuthenticated) return loginWithRedirect();
-                    //     if (isTheir(whole.id)) {
-                    //         dispatch(addtowhishlist(whole));
-                    //     }
-                    // }}
+                // onClick={(e) => {
+                //     if (!isAuthenticated) return loginWithRedirect();
+                //     if (isTheir(whole.id)) {
+                //         dispatch(addtowhishlist(whole));
+                //     }
+                // }}
                 >
                     watchlist
                 </Button>

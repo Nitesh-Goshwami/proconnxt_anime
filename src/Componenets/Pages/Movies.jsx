@@ -4,10 +4,14 @@ import { useEffect, useState } from "react";
 import MovieCard from './movieCard';
 import styled from "styled-components";
 import { device } from '../../device';
+import GenresFilter from '../Features/GenresFilter';
+import RatingFilter from '../Features/RatingFilter';
 
 
 const Container = styled.div`
   display: grid;
+  width:90%;
+  margin:auto;
   grid-template-columns: repeat(3, 1fr);
   height: 100%;
   @media ${device.mobileS} {
@@ -30,6 +34,8 @@ let limit = 6;
 const Movies = () => {
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [filterOn, setFilterOn] = useState(false);
+    const [type, setType] = useState("");
 
     useEffect(() => {
         getData();
@@ -61,31 +67,75 @@ const Movies = () => {
 
     const handlePageClick = async (data) => {
         console.log(data.selected);
-
         let currentPage = data.selected + 1;
-
         const dataFromServer = await fetchAnime(currentPage);
-
         setItems(dataFromServer);
         // scroll to the top
         window.scrollTo(0, 0)
     };
+
+    const handleChange = (event) => {
+        console.log("event", event.target.value);
+        setType(event.target.value)
+        setFilterOn(true);
+    };
     return <>
+        <h2>Anime</h2>
+        <div style={{ justifyContent: "right", display: "flex", marginRight: "50px" }}>
+            <GenresFilter handleChange={handleChange} />
+            {/* <RatingFilter /> */}
+        </div>
         <Container>
             {
-                isLoading && items.map((el, index) => {
-                    return (
-                        <MovieCard
+
+                filterOn ? type === "Action" ? isLoading && items.filter((el) =>
+                    el.genres.some((e) => e.name === "Action"))
+                    .map(el => {
+                        return Object.assign({}, el, {
+                            e: el.genres
+                                .filter(e => e.name === "Action")
+                        });
+                    }).map((el, index) => {
+                        return (<MovieCard
                             key={el.mal_id}
                             animeName={el.title}
                             animeImg={el.images.jpg.image_url}
                             animeDesc={el.synopsis}
-                            whole={el}
+                            genres={el.genres[0].name}
                             episodes={el.episodes}
                             rating={el.score}
-                        />
-                    )
-                })
+                        />)
+                    }) : isLoading && items.filter((el) =>
+                        el.genres.some((e) => e.name !== "Action"))
+                        .map(el => {
+                            return Object.assign({}, el, {
+                                e: el.genres
+                                    .filter(e => e.name !== "Action")
+                            });
+                        }).map((el, index) => {
+                            return (<MovieCard
+                                key={el.mal_id}
+                                animeName={el.title}
+                                animeImg={el.images.jpg.image_url}
+                                animeDesc={el.synopsis}
+                                genres={el.genres[0].name}
+                                episodes={el.episodes}
+                                rating={el.score}
+                            />)
+                        }) : isLoading && items.map((el, index) => {
+                            return (
+                                <MovieCard
+                                    key={el.mal_id}
+                                    animeName={el.title}
+                                    animeImg={el.images.jpg.image_url}
+                                    animeDesc={el.synopsis}
+                                    genres={el.genres[0].name}
+                                    whole={el}
+                                    episodes={el.episodes}
+                                    rating={el.score}
+                                />
+                            )
+                        })
             }
         </Container>
 
@@ -95,7 +145,7 @@ const Movies = () => {
             previousLabel={"previous"}
             nextLabel={"next"}
             breakLabel={"..."}
-            pageCount={4}
+            pageCount={8}
             marginPagesDisplayed={2}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}
