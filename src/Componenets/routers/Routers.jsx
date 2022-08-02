@@ -3,6 +3,8 @@ import { Home } from "../Pages/Home";
 import { Contact } from "../Pages/Contact";
 import { About } from "../Pages/About";
 import { Movies } from "../Pages/Movies";
+import { AnimeDetail } from "../Pages/AnimeDetails";
+
 const Routers = () => {
 
     return <>
@@ -12,6 +14,7 @@ const Routers = () => {
             <Route path="/Contact" element={<Contact />}></Route>
             <Route path="/About" element={<About />}></Route>
             <Route path="/Movies" element={<Movies />}></Route>
+            <Route path="/Movies/:id" element={<AnimeDetail/>}></Route>
         </Routes>
     </>
 }

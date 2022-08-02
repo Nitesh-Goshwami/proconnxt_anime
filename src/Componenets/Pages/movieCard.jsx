@@ -6,22 +6,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Rating } from "@mui/material";
-// import { useDispatch, useSelector } from "react-redux";
-// import { addtowhishlist } from "../../features/wishlist/wishlistSlice";
 import gsap from "gsap";
-// import { addToCart, postitem } from "../../features/cart/cartSlice";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 
 export default function MovieCard(prop) {
-    const { isAuthenticated, user, loginWithRedirect } = useAuth0();
-    const [email, setemail] = React.useState("");
     const navigate = useNavigate();
-    React.useEffect(() => {
-        if (isAuthenticated) {
-            setemail(user.email);
-        }
-    }, [isAuthenticated, user]);
 
     const {
         animeName,
@@ -32,10 +21,7 @@ export default function MovieCard(prop) {
         rating,
         genres
     } = prop,
-        // dispatch = useDispatch(),
-        // wishlist = useSelector((state) => state.wishlist),
         cardRef = React.useRef();
-
     React.useEffect(() => {
         gsap.from(cardRef.current, {
             opacity: 0.0,
@@ -44,17 +30,17 @@ export default function MovieCard(prop) {
         });
     }, []);
 
-    // function isTheir(id) {
-    //     if (!wishlist.whishlist.length) return true;
-    //     let tmp = [...wishlist.whishlist].filter((el) => el.id === id);
-    //     return tmp.length === 0;
-    // }
+    const save = () => {
+        let data = JSON.parse(localStorage.getItem("watchList") || "[]");
+        data.push(whole);
+        localStorage.setItem("watchList", JSON.stringify(data))
+    }
     return (
         <Card
             sx={{ maxWidth: 345, mt: "2%", ml: "2%", mr: "2%", cursor: "pointer" }}
             onClick={(e) => {
                 if (e.target.nodeName !== "BUTTON") {
-                    navigate("/Product/" + whole.mai_id);
+                    navigate("/Movies/" + whole.mal_id);
                 }
             }}
         >
@@ -65,7 +51,7 @@ export default function MovieCard(prop) {
                 image={animeImg}
                 alt="green iguana"
             />
-            <CardContent style={{ textAlign: "left",display:"grid" }}>
+            <CardContent style={{ textAlign: "left", display: "grid" }}>
                 <Typography gutterBottom variant="h6" component="div">
                     Title: {animeName.trim().split(" ").splice(0, 1)}
                 </Typography>
@@ -89,7 +75,6 @@ export default function MovieCard(prop) {
                     color="text.primary"
                     sx={{ fontSize: "20px" }}
                 >
-
                 </Typography>
                 <Rating readOnly name="half-rating" defaultValue={rating}></Rating>
             </CardContent>
@@ -97,24 +82,7 @@ export default function MovieCard(prop) {
                 <Button
                     variant="contained"
                     size="small"
-                    color="success"
-                // onClick={(e) => {
-                //     if (!isAuthenticated) return loginWithRedirect();
-                //     dispatch(addToCart(whole));
-                //     dispatch(postitem({ item: whole, user: email }));
-                // }}
-                >
-                    cart
-                </Button>
-                <Button
-                    variant="contained"
-                    size="small"
-                // onClick={(e) => {
-                //     if (!isAuthenticated) return loginWithRedirect();
-                //     if (isTheir(whole.id)) {
-                //         dispatch(addtowhishlist(whole));
-                //     }
-                // }}
+                    onClick={save}
                 >
                     watchlist
                 </Button>

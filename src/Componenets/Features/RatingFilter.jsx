@@ -4,20 +4,14 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function RatingFilter() {
-    const [age, setAge] = React.useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
-
+export default function GenresFilter({handleChange,value}) {
     return (
-        <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
-            <InputLabel id="demo-select-small">Rating</InputLabel>
+        <FormControl sx={{ m: 1, minWidth: 220 }} size="small">
+            <InputLabel id="demo-select-small">Genres</InputLabel>
             <Select
                 labelId="demo-select-small"
                 id="demo-select-small"
-                value={age}
+                value={value}
                 label="Age"
                 onChange={handleChange}
             >

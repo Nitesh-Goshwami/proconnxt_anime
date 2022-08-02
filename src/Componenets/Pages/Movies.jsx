@@ -5,7 +5,6 @@ import MovieCard from './movieCard';
 import styled from "styled-components";
 import { device } from '../../device';
 import GenresFilter from '../Features/GenresFilter';
-import RatingFilter from '../Features/RatingFilter';
 
 
 const Container = styled.div`
@@ -39,7 +38,7 @@ const Movies = () => {
 
     useEffect(() => {
         getData();
-    }, [limit]);
+    }, [limit, type]);
 
 
     const dataInstance = axios.create({
@@ -61,7 +60,6 @@ const Movies = () => {
             `https://api.jikan.moe/v4/anime?page=${currentPage}&limit=${limit}`
         );
         const data = await res.json();
-        console.log("data", data.data)
         return data.data;
     };
 
@@ -82,8 +80,7 @@ const Movies = () => {
     return <>
         <h2>Anime</h2>
         <div style={{ justifyContent: "right", display: "flex", marginRight: "50px" }}>
-            <GenresFilter handleChange={handleChange} />
-            {/* <RatingFilter /> */}
+            <GenresFilter handleChange={handleChange} value={type} />
         </div>
         <Container>
             {
@@ -105,12 +102,12 @@ const Movies = () => {
                             episodes={el.episodes}
                             rating={el.score}
                         />)
-                    }) : isLoading && items.filter((el) =>
-                        el.genres.some((e) => e.name !== "Action"))
+                    }) : type === "Sports" ? isLoading && items.filter((el) =>
+                        el.genres.some((e) => e.name === "Sports"))
                         .map(el => {
                             return Object.assign({}, el, {
                                 e: el.genres
-                                    .filter(e => e.name !== "Action")
+                                    .filter(e => e.name === "Sports")
                             });
                         }).map((el, index) => {
                             return (<MovieCard
@@ -119,9 +116,23 @@ const Movies = () => {
                                 animeImg={el.images.jpg.image_url}
                                 animeDesc={el.synopsis}
                                 genres={el.genres[0].name}
+                                whole={el}
                                 episodes={el.episodes}
                                 rating={el.score}
                             />)
+                        }) : isLoading && items.map((el, index) => {
+                            return (
+                                <MovieCard
+                                    key={el.mal_id}
+                                    animeName={el.title}
+                                    animeImg={el.images.jpg.image_url}
+                                    animeDesc={el.synopsis}
+                                    genres={el.genres[0].name}
+                                    whole={el}
+                                    episodes={el.episodes}
+                                    rating={el.score}
+                                />
+                            )
                         }) : isLoading && items.map((el, index) => {
                             return (
                                 <MovieCard

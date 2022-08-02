@@ -24,7 +24,7 @@ export default function ImgMediaCard(props) {
                     Episodes: {episodes}
                 </Typography>
                 <Typography style={{ overflow: "hidden" }} variant="body2" color="text.secondary">
-                    {description}
+                    Description: {description.split("").slice(0,50).join("") + "..."}
                 </Typography>
             </CardContent>
             <CardActions>
