@@ -41,14 +41,14 @@ npm install redux react-redux axios react-router-dom npm install @mui/material @
 
 ## Some of the snaps from the app
 ### Home page
-![Dashboard page](https://github.com/Nitesh-Goshwami/todoApp/blob/master/client/public/Images/Homep.png?raw=true)
+![Home page](https://github.com/Nitesh-Goshwami/todoApp/blob/master/client/public/Images/Homep.png?raw=true)
 ### Anime page
-![Signup page](https://github.com/Nitesh-Goshwami/todoApp/blob/master/client/public/Images/anime.png?raw=true)
+![Anime page](https://github.com/Nitesh-Goshwami/todoApp/blob/master/client/public/Images/Anime%20list.png?raw=true)
 ### Sliders 
-![Signin page](https://github.com/Nitesh-Goshwami/todoApp/blob/master/client/public/Images/slider.png?raw=true)
+![Slider page](https://github.com/Nitesh-Goshwami/todoApp/blob/master/client/public/Images/sliders.png?raw=true)
 ### Watch list
-![Drawer](https://github.com/Nitesh-Goshwami/todoApp/blob/master/client/public/Images/watchlist.png?raw=true)
+![watch list](https://github.com/Nitesh-Goshwami/todoApp/blob/master/client/public/Images/watch%20list.png?raw=true)
 ### Login Using Auth0 
-![Edit task](https://github.com/Nitesh-Goshwami/todoApp/blob/master/client/public/Images/loginp.png?raw=true)
+![Login](https://github.com/Nitesh-Goshwami/todoApp/blob/master/client/public/Images/loginp.png?raw=true)
 
 I want to take this opportunity to thank you for visiting here.
