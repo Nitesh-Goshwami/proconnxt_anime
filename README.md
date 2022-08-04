@@ -6,6 +6,7 @@ Or copy the link below, in your browser
 ```
 https://proconnxt-anime.vercel.app/
 ```
+Please watch the demo of app [Demo video](https://drive.google.com/file/d/1vhmUEnqMZIcezZ6SU4CIefsoM-EQNVBZ/view?usp=sharing).
 
 ## Using the app
 ### Technologies used
